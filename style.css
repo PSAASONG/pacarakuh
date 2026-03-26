@@ -7,7 +7,6 @@
 
 body {
   background: #0f0f0f;
-  color: white;
   overflow: hidden;
 }
 
@@ -16,6 +15,7 @@ body {
   width: 100%;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 /* PAGE */
@@ -27,15 +27,20 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 40px;
-  opacity: 0;
+
   transform: translateX(100%);
+  opacity: 0;
   transition: all 0.5s ease;
 }
 
-/* aktif */
 .page.active {
-  opacity: 1;
   transform: translateX(0);
+  opacity: 1;
+}
+
+.page.prev {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 
 /* TEXT */
@@ -48,33 +53,13 @@ body {
 /* IMAGE */
 .page img {
   width: 45%;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  border-radius: 12px;
 }
 
 /* ENDING */
 .ending {
-  font-size: 32px;
+  font-size: 30px;
   color: #ff7aa2;
-}
-
-/* NAV BUTTON */
-.nav {
-  position: fixed;
-  bottom: 30px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.nav button {
-  padding: 10px 20px;
-  font-size: 20px;
-  border: none;
-  background: #ff7aa2;
-  color: white;
-  border-radius: 10px;
 }
 
 /* LOVE */
@@ -99,17 +84,13 @@ body {
   border-radius: 50%;
 }
 
-.hearts span::before {
-  top: -6px;
-}
+.hearts span::before { top: -6px; }
+.hearts span::after { left: -6px; }
 
-.hearts span::after {
-  left: -6px;
-}
-
-.hearts span:nth-child(1){ left: 20%; }
-.hearts span:nth-child(2){ left: 50%; }
-.hearts span:nth-child(3){ left: 80%; }
+.hearts span:nth-child(1){ left: 15%; }
+.hearts span:nth-child(2){ left: 40%; }
+.hearts span:nth-child(3){ left: 65%; }
+.hearts span:nth-child(4){ left: 85%; }
 
 @keyframes float {
   0% { transform: translateY(0) rotate(45deg); }
