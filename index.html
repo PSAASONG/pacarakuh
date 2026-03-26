@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scrapbook</title>
+<title>Scrapbook Book</title>
 
 <style>
 * {
@@ -24,39 +24,30 @@ body {
 
 /* BOOK */
 .book {
-  width: 300px;
-  height: 420px;
-  position: relative;
-  perspective: 1500px;
+  width: 90%;
+  max-width: 700px;
+  height: 450px;
+  display: flex;
+  perspective: 2000px;
 }
 
-/* PAPER */
-.paper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s;
-}
-
-/* FLIP */
-.paper.flipped {
-  transform: rotateY(-180deg);
-}
-
-/* FRONT & BACK */
-.front, .back {
-  position: absolute;
-  width: 100%;
+/* HALAMAN KIRI & KANAN */
+.page {
+  width: 50%;
   height: 100%;
   background: #1e1e1e;
-  border-radius: 10px;
-  backface-visibility: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
 }
 
-.back {
-  transform: rotateY(180deg);
+/* LIPATAN TENGAH */
+.page.left {
+  border-right: 2px solid #333;
+}
+
+.page.right {
+  border-left: 2px solid #333;
 }
 
 /* CONTENT */
@@ -67,12 +58,43 @@ body {
 
 .content img {
   width: 100%;
-  margin-top: 10px;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 .content h2 {
   color: #aefcff;
+}
+
+/* ANIMASI FLIP */
+.flip {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
+  z-index: 10;
+}
+
+.flip.flipped {
+  transform: rotateY(-180deg);
+}
+
+.flip .front,
+.flip .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  backface-visibility: hidden;
+  border-left: 2px solid #333;
+}
+
+.flip .back {
+  transform: rotateY(180deg);
 }
 
 /* LOVE */
@@ -100,11 +122,6 @@ body {
 .hearts span::before { top: -5px; }
 .hearts span::after { left: -5px; }
 
-.hearts span:nth-child(1){ left: 20%; }
-.hearts span:nth-child(2){ left: 40%; }
-.hearts span:nth-child(3){ left: 60%; }
-.hearts span:nth-child(4){ left: 80%; }
-
 @keyframes float {
   0% { transform: translateY(0) rotate(45deg); }
   100% { transform: translateY(-110vh) rotate(45deg); }
@@ -119,87 +136,39 @@ body {
 </audio>
 
 <div class="hearts">
-  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span>
 </div>
 
 <div class="book" id="book">
 
-  <!-- 1 -->
-  <div class="paper">
-    <div class="front">
-      <div class="content">
-        <h2>Kata kamu 1</h2>
-        <img src="img1.jpg">
-      </div>
+  <!-- kiri -->
+  <div class="page left" id="leftPage">
+    <div class="content">
+      <h2>Kata kamu 1</h2>
+      <img src="img1.jpg">
     </div>
-    <div class="back">
+  </div>
+
+  <!-- kanan -->
+  <div class="page right" id="rightPage">
+    <div class="content">
+      <h2>Kata kamu 2</h2>
+      <img src="img2.jpg">
+    </div>
+  </div>
+
+  <!-- halaman flip -->
+  <div class="flip" id="flipPage">
+    <div class="front">
       <div class="content">
         <h2>Kata kamu 2</h2>
         <img src="img2.jpg">
       </div>
     </div>
-  </div>
-
-  <!-- 2 -->
-  <div class="paper">
-    <div class="front">
+    <div class="back">
       <div class="content">
         <h2>Kata kamu 3</h2>
         <img src="img3.jpg">
-      </div>
-    </div>
-    <div class="back">
-      <div class="content">
-        <h2>Kata kamu 4</h2>
-        <img src="img4.jpg">
-      </div>
-    </div>
-  </div>
-
-  <!-- 3 -->
-  <div class="paper">
-    <div class="front">
-      <div class="content">
-        <h2>Kata kamu 5</h2>
-        <img src="img5.jpg">
-      </div>
-    </div>
-    <div class="back">
-      <div class="content">
-        <h2>Kata kamu 6</h2>
-        <img src="img6.jpg">
-      </div>
-    </div>
-  </div>
-
-  <!-- 4 -->
-  <div class="paper">
-    <div class="front">
-      <div class="content">
-        <h2>Kata kamu 7</h2>
-        <img src="img7.jpg">
-      </div>
-    </div>
-    <div class="back">
-      <div class="content">
-        <h2>Kata kamu 8</h2>
-        <img src="img8.jpg">
-      </div>
-    </div>
-  </div>
-
-  <!-- 5 -->
-  <div class="paper">
-    <div class="front">
-      <div class="content">
-        <h2>Kata kamu 9</h2>
-        <img src="img9.jpg">
-      </div>
-    </div>
-    <div class="back">
-      <div class="content">
-        <h2>Jadi Kekasihku Saja ❤️</h2>
-        <img src="img10.jpg">
       </div>
     </div>
   </div>
@@ -207,41 +176,67 @@ body {
 </div>
 
 <script>
-const papers = document.querySelectorAll(".paper");
-let current = 0;
+const data = [
+  {text:"Kata kamu 1", img:"img1.jpg"},
+  {text:"Kata kamu 2", img:"img2.jpg"},
+  {text:"Kata kamu 3", img:"img3.jpg"},
+  {text:"Kata kamu 4", img:"img4.jpg"},
+  {text:"Kata kamu 5", img:"img5.jpg"},
+  {text:"Kata kamu 6", img:"img6.jpg"},
+  {text:"Kata kamu 7", img:"img7.jpg"},
+  {text:"Kata kamu 8", img:"img8.jpg"},
+  {text:"Kata kamu 9", img:"img9.jpg"},
+  {text:"Jadi Kekasihku Saja ❤️", img:"img10.jpg"}
+];
 
-/* z-index biar berlapis */
-papers.forEach((p, i) => {
-  p.style.zIndex = papers.length - i;
-});
+let index = 0;
 
-/* swipe */
+const left = document.getElementById("leftPage");
+const right = document.getElementById("rightPage");
+const flip = document.getElementById("flipPage");
+
+function updatePages(){
+  left.innerHTML = `<div class="content">
+    <h2>${data[index].text}</h2>
+    <img src="${data[index].img}">
+  </div>`;
+
+  right.innerHTML = `<div class="content">
+    <h2>${data[index+1]?.text || ""}</h2>
+    <img src="${data[index+1]?.img || ""}">
+  </div>`;
+}
+
+updatePages();
+
+/* SWIPE */
 let startX = 0;
 
-document.addEventListener("touchstart", e => {
+document.addEventListener("touchstart", e=>{
   startX = e.touches[0].clientX;
 });
 
-document.addEventListener("touchend", e => {
+document.addEventListener("touchend", e=>{
   let endX = e.changedTouches[0].clientX;
   let diff = startX - endX;
 
-  if (diff > 50) {
-    if (current < papers.length) {
-      papers[current].classList.add("flipped");
-      current++;
-    }
+  if(diff > 50 && index < data.length-2){
+    flip.classList.add("flipped");
+
+    setTimeout(()=>{
+      index += 2;
+      updatePages();
+      flip.classList.remove("flipped");
+    },700);
   }
 
-  if (diff < -50) {
-    if (current > 0) {
-      current--;
-      papers[current].classList.remove("flipped");
-    }
+  if(diff < -50 && index > 0){
+    index -= 2;
+    updatePages();
   }
 });
 
-/* autoplay fix HP */
+/* autoplay fix */
 document.body.addEventListener('click', () => {
   document.getElementById('music').play();
 }, { once: true });
