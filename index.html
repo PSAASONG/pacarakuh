@@ -3,51 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scrapbook</title>
-
-<!-- LIBRARY -->
-<script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
-
+<title>Scrapbook Checkbox Flip</title>
 <style>
 body {
   margin: 0;
-  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
   font-family: sans-serif;
+  overflow: hidden;
 }
 
-/* BOOK */
+/* BOOK CONTAINER */
 #book {
   width: 90%;
-  max-width: 800px;
+  max-width: 700px;
   height: 500px;
+  position: relative;
+  perspective: 1500px;
+}
+
+/* HIDE CHECKBOX */
+#book input {
+  display: none;
 }
 
 /* PAGE */
 .page {
-  background: #1e1e1e;
-  color: white;
-  padding: 20px;
-  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
   border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: pink;
+  z-index: 0;
 }
 
-/* CONTENT */
+/* FLIPPED STATE */
+#book input:checked + .page {
+  transform: rotateY(-180deg);
+  z-index: -1;
+}
+
+/* FRONT & BACK */
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+/* CONTENT LAYOUT */
 .content {
   display: flex;
-  gap: 20px;
+  width: 100%;
   height: 100%;
-  align-items: center;
 }
 
 .text {
   width: 50%;
-  color: #aefcff;
-  font-size: 18px;
+  color: white;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 img {
@@ -55,14 +88,7 @@ img {
   border-radius: 10px;
 }
 
-/* END */
-.end {
-  font-size: 28px;
-  color: #ff7aa2;
-  text-align: center;
-}
-
-/* LOVE */
+/* LOVE PARTICLE */
 .hearts span {
   position: fixed;
   bottom: -20px;
@@ -72,6 +98,7 @@ img {
   transform: rotate(45deg);
   animation: float 8s linear infinite;
   opacity: 0.5;
+  border-radius: 50%;
 }
 
 .hearts span::before,
@@ -93,7 +120,6 @@ img {
 }
 </style>
 </head>
-
 <body>
 
 <audio id="music" loop>
@@ -109,40 +135,65 @@ img {
 
 <div id="book">
 
-  <div class="page"><div class="content"><div class="text">Kata kamu 1</div><img src="img1.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 2</div><img src="img2.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 3</div><img src="img3.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 4</div><img src="img4.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 5</div><img src="img5.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 6</div><img src="img6.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 7</div><img src="img7.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 8</div><img src="img8.jpg"></div></div>
-  <div class="page"><div class="content"><div class="text">Kata kamu 9</div><img src="img9.jpg"></div></div>
-  <div class="page"><div class="end">Jadi Kekasihku Saja ❤️</div></div>
+  <!-- PAGE 1 -->
+  <input type="checkbox" id="one">
+  <div class="page">
+    <div class="front">
+      <div class="content">
+        <div class="text">Kata kamu 1</div>
+        <img src="img1.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <div class="text">Kata kamu 2</div>
+        <img src="img2.jpg">
+      </div>
+    </div>
+    <label for="one" style="position:absolute;width:100%;height:100%;top:0;left:0;cursor:pointer;"></label>
+  </div>
+
+  <!-- PAGE 2 -->
+  <input type="checkbox" id="two">
+  <div class="page">
+    <div class="front">
+      <div class="content">
+        <div class="text">Kata kamu 3</div>
+        <img src="img3.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <div class="text">Kata kamu 4</div>
+        <img src="img4.jpg">
+      </div>
+    </div>
+    <label for="two" style="position:absolute;width:100%;height:100%;top:0;left:0;cursor:pointer;"></label>
+  </div>
+
+  <!-- PAGE 3 -->
+  <input type="checkbox" id="three">
+  <div class="page">
+    <div class="front">
+      <div class="content">
+        <div class="text">Kata kamu 5</div>
+        <img src="img5.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <div class="text">Jadi Kekasihku Saja ❤️</div>
+        <img src="img10.jpg">
+      </div>
+    </div>
+    <label for="three" style="position:absolute;width:100%;height:100%;top:0;left:0;cursor:pointer;"></label>
+  </div>
 
 </div>
 
 <script>
-const pageFlip = new St.PageFlip(
-  document.getElementById("book"),
-  {
-    width: 400,
-    height: 500,
-    size: "stretch",
-    minWidth: 300,
-    maxWidth: 800,
-    showCover: true,
-    mobileScrollSupport: false
-  }
-);
-
-pageFlip.loadFromHTML(document.querySelectorAll(".page"));
-
-/* autoplay setelah interaksi */
-document.body.addEventListener('click', () => {
-  document.getElementById('music').play();
-}, { once: true });
+// Musik autoplay fix
+document.body.addEventListener('click', ()=>{document.getElementById('music').play();},{once:true});
 </script>
-
 </body>
 </html>
