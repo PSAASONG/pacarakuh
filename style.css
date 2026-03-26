@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: #0f0f0f;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Container */
+.container {
+  scroll-snap-type: y mandatory;
+}
+
+/* Slide */
+.slide {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  scroll-snap-align: start;
+}
+
+/* Text kiri */
+.text {
+  width: 45%;
+  font-size: 24px;
+  color: #aefcff;
+}
+
+/* Foto kanan */
+.slide img {
+  width: 45%;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* Ending style */
+.ending {
+  font-size: 32px;
+  color: #ff7aa2;
+}
+
+/* LOVE PARTICLES (ringan) */
+.hearts span {
+  position: fixed;
+  bottom: -20px;
+  width: 15px;
+  height: 15px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 10s linear infinite;
+  opacity: 0.5;
+}
+
+.hearts span::before,
+.hearts span::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+}
+
+.hearts span::before {
+  top: -8px;
+  left: 0;
+}
+
+.hearts span::after {
+  left: -8px;
+  top: 0;
+}
+
+/* posisi random */
+.hearts span:nth-child(1){ left: 10%; animation-duration: 8s; }
+.hearts span:nth-child(2){ left: 30%; animation-duration: 12s; }
+.hearts span:nth-child(3){ left: 50%; animation-duration: 10s; }
+.hearts span:nth-child(4){ left: 70%; animation-duration: 14s; }
+.hearts span:nth-child(5){ left: 90%; animation-duration: 9s; }
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(45deg);
+    opacity: 0;
+  }
+}
