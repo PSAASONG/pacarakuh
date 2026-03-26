@@ -15,54 +15,54 @@
 
 <!-- Love -->
 <div class="hearts">
-  <span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
 </div>
 
-<!-- Book -->
+<!-- BOOK -->
 <div class="book" id="book">
 
   <div class="page active">
-    <div class="text">Teks kamu 1</div>
+    <div class="text">Kata kamu 1</div>
     <img src="img1.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 2</div>
+    <div class="text">Kata kamu 2</div>
     <img src="img2.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 3</div>
+    <div class="text">Kata kamu 3</div>
     <img src="img3.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 4</div>
+    <div class="text">Kata kamu 4</div>
     <img src="img4.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 5</div>
+    <div class="text">Kata kamu 5</div>
     <img src="img5.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 6</div>
+    <div class="text">Kata kamu 6</div>
     <img src="img6.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 7</div>
+    <div class="text">Kata kamu 7</div>
     <img src="img7.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 8</div>
+    <div class="text">Kata kamu 8</div>
     <img src="img8.jpg">
   </div>
 
   <div class="page">
-    <div class="text">Teks kamu 9</div>
+    <div class="text">Kata kamu 9</div>
     <img src="img9.jpg">
   </div>
 
@@ -73,40 +73,7 @@
 
 </div>
 
-<!-- tombol -->
-<div class="nav">
-  <button onclick="prev()">‹</button>
-  <button onclick="next()">›</button>
-</div>
-
-<script>
-let current = 0;
-const pages = document.querySelectorAll('.page');
-
-function showPage(index){
-  pages.forEach(p => p.classList.remove('active'));
-  pages[index].classList.add('active');
-}
-
-function next(){
-  if(current < pages.length - 1){
-    current++;
-    showPage(current);
-  }
-}
-
-function prev(){
-  if(current > 0){
-    current--;
-    showPage(current);
-  }
-}
-
-/* biar musik jalan setelah klik pertama (anti blok HP) */
-document.body.addEventListener('click', () => {
-  document.getElementById('music').play();
-}, { once: true });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
