@@ -1,79 +1,251 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrapbook</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrapbook</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: #111;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* BOOK */
+.book {
+  width: 300px;
+  height: 420px;
+  position: relative;
+  perspective: 1500px;
+}
+
+/* PAPER */
+.paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+/* FLIP */
+.paper.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* FRONT & BACK */
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+/* CONTENT */
+.content {
+  padding: 20px;
+  text-align: center;
+}
+
+.content img {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.content h2 {
+  color: #aefcff;
+}
+
+/* LOVE */
+.hearts span {
+  position: fixed;
+  bottom: -20px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 8s linear infinite;
+  opacity: 0.4;
+}
+
+.hearts span::before,
+.hearts span::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+}
+
+.hearts span::before { top: -5px; }
+.hearts span::after { left: -5px; }
+
+.hearts span:nth-child(1){ left: 20%; }
+.hearts span:nth-child(2){ left: 40%; }
+.hearts span:nth-child(3){ left: 60%; }
+.hearts span:nth-child(4){ left: 80%; }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(45deg); }
+  100% { transform: translateY(-110vh) rotate(45deg); }
+}
+</style>
 </head>
+
 <body>
 
-<!-- Musik -->
 <audio id="music" autoplay loop>
   <source src="lagu.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Love -->
 <div class="hearts">
   <span></span><span></span><span></span><span></span>
 </div>
 
-<!-- BOOK -->
 <div class="book" id="book">
 
-  <div class="page active">
-    <div class="text">Kata kamu 1</div>
-    <img src="img1.jpg">
+  <!-- 1 -->
+  <div class="paper">
+    <div class="front">
+      <div class="content">
+        <h2>Kata kamu 1</h2>
+        <img src="img1.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <h2>Kata kamu 2</h2>
+        <img src="img2.jpg">
+      </div>
+    </div>
   </div>
 
-  <div class="page">
-    <div class="text">Kata kamu 2</div>
-    <img src="img2.jpg">
+  <!-- 2 -->
+  <div class="paper">
+    <div class="front">
+      <div class="content">
+        <h2>Kata kamu 3</h2>
+        <img src="img3.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <h2>Kata kamu 4</h2>
+        <img src="img4.jpg">
+      </div>
+    </div>
   </div>
 
-  <div class="page">
-    <div class="text">Kata kamu 3</div>
-    <img src="img3.jpg">
+  <!-- 3 -->
+  <div class="paper">
+    <div class="front">
+      <div class="content">
+        <h2>Kata kamu 5</h2>
+        <img src="img5.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <h2>Kata kamu 6</h2>
+        <img src="img6.jpg">
+      </div>
+    </div>
   </div>
 
-  <div class="page">
-    <div class="text">Kata kamu 4</div>
-    <img src="img4.jpg">
+  <!-- 4 -->
+  <div class="paper">
+    <div class="front">
+      <div class="content">
+        <h2>Kata kamu 7</h2>
+        <img src="img7.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <h2>Kata kamu 8</h2>
+        <img src="img8.jpg">
+      </div>
+    </div>
   </div>
 
-  <div class="page">
-    <div class="text">Kata kamu 5</div>
-    <img src="img5.jpg">
-  </div>
-
-  <div class="page">
-    <div class="text">Kata kamu 6</div>
-    <img src="img6.jpg">
-  </div>
-
-  <div class="page">
-    <div class="text">Kata kamu 7</div>
-    <img src="img7.jpg">
-  </div>
-
-  <div class="page">
-    <div class="text">Kata kamu 8</div>
-    <img src="img8.jpg">
-  </div>
-
-  <div class="page">
-    <div class="text">Kata kamu 9</div>
-    <img src="img9.jpg">
-  </div>
-
-  <div class="page">
-    <div class="text ending">Jadi Kekasihku Saja ❤️</div>
-    <img src="img10.jpg">
+  <!-- 5 -->
+  <div class="paper">
+    <div class="front">
+      <div class="content">
+        <h2>Kata kamu 9</h2>
+        <img src="img9.jpg">
+      </div>
+    </div>
+    <div class="back">
+      <div class="content">
+        <h2>Jadi Kekasihku Saja ❤️</h2>
+        <img src="img10.jpg">
+      </div>
+    </div>
   </div>
 
 </div>
 
-<script src="script.js"></script>
+<script>
+const papers = document.querySelectorAll(".paper");
+let current = 0;
+
+/* z-index biar berlapis */
+papers.forEach((p, i) => {
+  p.style.zIndex = papers.length - i;
+});
+
+/* swipe */
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  let diff = startX - endX;
+
+  if (diff > 50) {
+    if (current < papers.length) {
+      papers[current].classList.add("flipped");
+      current++;
+    }
+  }
+
+  if (diff < -50) {
+    if (current > 0) {
+      current--;
+      papers[current].classList.remove("flipped");
+    }
+  }
+});
+
+/* autoplay fix HP */
+document.body.addEventListener('click', () => {
+  document.getElementById('music').play();
+}, { once: true });
+</script>
 
 </body>
 </html>
